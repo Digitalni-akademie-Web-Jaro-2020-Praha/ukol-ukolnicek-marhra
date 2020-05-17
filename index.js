@@ -1,7 +1,7 @@
 'use strict';
 
-let tasks = [];
-let todo__tasksElm = document.querySelector('.todo__tasks');
+const tasks = [];
+const todo__tasksElm = document.querySelector('.todo__tasks');
 
 const updateTasks = () => {
   todo__tasksElm.innerHTML = '';
@@ -11,10 +11,17 @@ const updateTasks = () => {
   }
 };
 
+const newTask = () => {
+  const newTaskElm = document.querySelector('#new-task');
+  if (newTaskElm.value === '') {
+    return null;
+  } else {
+    tasks.push(newTaskElm.value);
+    updateTasks();
+    newTaskElm.value = '';
+  }
+};
 
-
-console.log('funguju!');
-
-//const newTaskElm = document.querySelector('#new-task');
-//const btnElm = document.querySelector('.btn-add');
-
+const btnElm = document.querySelector('.btn-add');
+btnElm.addEventListener('click', newTask);
+updateTasks(tasks);
